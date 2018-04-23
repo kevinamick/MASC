@@ -53,6 +53,19 @@ public class RegistrationController {
                 alert.setHeaderText(null);
                 alert.setContentText("These Passwords are not the Same");
                 alert.showAndWait();
+            } else if(!validEmail(fld_email_reg.getText())) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Email");
+                alert.setHeaderText(null);
+                alert.setContentText("This is not a valid email");
+                alert.showAndWait();
+            } else if (!validPassword(fld_pass_reg.getText())) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Password");
+                alert.setHeaderText(null);
+                alert.setContentText("Password must have 8 characters, an upper and lower case character, a number," +
+                        " and a special character");
+                alert.showAndWait();
             } else {
                 dao.insertUser(fld_email_reg.getText().trim(), fld_pass_reg.getText().trim());
                 Stage stage = Main.getPrimaryStage();
@@ -63,5 +76,13 @@ public class RegistrationController {
             System.err.println("Something went wrong when inserting user");
             System.err.println(e.getMessage());
         }
+    }
+
+    private boolean validPassword(String password) {
+        return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}");
+    }
+
+    private boolean validEmail(String email) {
+        return email.matches("[a-zA-Z0-9]+[._a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]*[a-zA-Z]*@[a-zA-Z0-9]{2,8}.[a-zA-Z.]{2,6}");
     }
 }
