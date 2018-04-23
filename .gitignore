@@ -13,6 +13,7 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+.idea/
 
 # External tool builders
 .externalToolBuilders/
@@ -121,7 +122,6 @@ fabric.properties
 
 *.iml
 modules.xml
-.idea/*
 *.ipr
 
 # Sonarlint plugin
