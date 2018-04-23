@@ -39,7 +39,7 @@ public class RegistrationController {
 
     public void register(ActionEvent event) {
         try {
-            Parent root = reg_loader.load();
+            Parent root = login_loader.load();
             if(fld_email_reg.getText().trim().isEmpty() || fld_pass_reg.getText().isEmpty()
                     || fld_pass2_reg.getText().trim().isEmpty()) {
                 alert = new Alert(Alert.AlertType.ERROR);
@@ -60,6 +60,11 @@ public class RegistrationController {
                 stage.show();
             }
         } catch (Exception e) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Insertion Error");
+            alert.setHeaderText(null);
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
             System.err.println("Something went wrong when inserting user");
             System.err.println(e.getMessage());
         }
