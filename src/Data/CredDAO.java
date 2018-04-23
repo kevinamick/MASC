@@ -8,10 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
 
-public class LoginDAO {
+public class CredDAO {
     private Connection database;
 
-    public LoginDAO() {
+    public CredDAO() {
         database = Database.connect();
     }
 
