@@ -21,12 +21,13 @@ public class LoginController {
     private PasswordField fld_pass;
 
     CredDAO dao = new CredDAO();
-    FXMLLoader dashboard_loader = new FXMLLoader(getClass().getResource("/Resources/dashboard.fxml"));
+    FXMLLoader dashboard_loader = new FXMLLoader(getClass().getResource("/Resources/registrar_dashboard.fxml"));
     FXMLLoader reg_loader = new FXMLLoader(getClass().getResource("/Resources/register.fxml"));
     Alert alert;
 
     public void login(ActionEvent event) {
         try {
+            Stage stage = Main.getPrimaryStage();
             Parent root = dashboard_loader.load();
             if (fld_email.getText().trim().isEmpty() || fld_pass.getText().trim().isEmpty()) {
                 alert = new Alert(Alert.AlertType.ERROR);
@@ -37,7 +38,6 @@ public class LoginController {
             } else {
                 boolean validated = dao.validateUser(fld_email.getText().trim(), fld_pass.getText().trim());
                 if (validated) {
-                    Stage stage = Main.getPrimaryStage();
                     stage.setScene(new Scene(root));
                     stage.show();
                 } else {
