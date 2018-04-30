@@ -18,7 +18,7 @@ public class UserDAO extends DAO {
 
             stmt.execute();
         } catch (SQLException e) {
-            System.err.println("Something went wrong when inserting user!");
+            System.err.println("Something went wrong when inserting user.");
             System.err.println(e.getMessage());
         }
     }
