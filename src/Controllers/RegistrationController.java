@@ -38,43 +38,33 @@ public class RegistrationController {
     }
 
     public void register(ActionEvent event) {
-        try {
-            Parent root = reg_loader.load();
-            if(fld_email_reg.getText().trim().isEmpty() || fld_pass_reg.getText().isEmpty()
-                    || fld_pass2_reg.getText().trim().isEmpty()) {
-                alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Bad Input");
-                alert.setHeaderText(null);
-                alert.setContentText("Please Enter an Email, Password, and Reenter the Password");
-                alert.showAndWait();
-            } else if(!fld_pass_reg.getText().equals(fld_pass2_reg.getText())){
-                alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Password Mismatch");
-                alert.setHeaderText(null);
-                alert.setContentText("These Passwords are not the Same");
-                alert.showAndWait();
-            } else if(!validEmail(fld_email_reg.getText())) {
-                alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Invalid Email");
-                alert.setHeaderText(null);
-                alert.setContentText("This is not a valid email");
-                alert.showAndWait();
-            } else if (!validPassword(fld_pass_reg.getText())) {
-                alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Invalid Password");
-                alert.setHeaderText(null);
-                alert.setContentText("Password must have 8 characters, an upper and lower case character, a number," +
-                        " and a special character");
-                alert.showAndWait();
-            } else {
+        if (fld_email_reg.getText().trim().isEmpty() || fld_pass_reg.getText().isEmpty()
+                || fld_pass2_reg.getText().trim().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Bad Input");
+            alert.setHeaderText(null);
+            alert.setContentText("Please Enter an Email, Password, and Reenter the Password");
+            alert.showAndWait();
+        } else if (!fld_pass_reg.getText().equals(fld_pass2_reg.getText())) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Password Mismatch");
+            alert.setHeaderText(null);
+            alert.setContentText("These Passwords are not the Same");
+            alert.showAndWait();
+        } else {
+            try {
                 dao.insertUser(fld_email_reg.getText().trim(), fld_pass_reg.getText().trim());
+                Parent root = login_loader.load();
                 Stage stage = Main.getPrimaryStage();
                 stage.setScene(new Scene(root));
                 stage.show();
+            } catch (Exception e) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Insertion Error");
+                alert.setHeaderText(null);
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
             }
-        } catch (Exception e) {
-            System.err.println("Something went wrong when inserting user");
-            System.err.println(e.getMessage());
         }
     }
 
