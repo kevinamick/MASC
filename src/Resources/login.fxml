@@ -6,14 +6,23 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
+<Pane fx:controller="Controllers.LoginController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <!--Logo-->
       <Label layoutX="37.0" layoutY="39.0" prefHeight="17.0" prefWidth="227.0" text="Maryland Association of Student Councils" />
+
+      <!--Email-->
       <Label layoutX="23.0" layoutY="141.0" text="Email:" />
       <TextField fx:id="fld_email" layoutX="77.0" layoutY="137.0" prefHeight="25.0" prefWidth="181.0" />
+
+      <!--Password-->
       <Label layoutX="12.0" layoutY="204.0" text="Password:" />
-      <Button fx:id="btn_login" layoutX="167.0" layoutY="267.0" mnemonicParsing="false" onAction="#login" text="Login" />
-      <Button fx:id="btn_reg" layoutX="98.0" layoutY="267.0" mnemonicParsing="false" onAction="#openRegistration" text="Register" />
       <PasswordField fx:id="fld_pass" layoutX="78.0" layoutY="200.0" prefHeight="25.0" prefWidth="181.0" />
+
+      <!--Login-->
+      <Button fx:id="btn_login" layoutX="167.0" layoutY="267.0" mnemonicParsing="false" onAction="#login" text="Login" />
+
+      <!--Register-->
+      <Button fx:id="btn_reg" layoutX="98.0" layoutY="267.0" mnemonicParsing="false" onAction="#openRegistration" text="Register" />
    </children>
 </Pane>
