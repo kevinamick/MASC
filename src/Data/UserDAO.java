@@ -1,10 +1,39 @@
 package Data;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 //import java.util.Random;
 
 public class UserDAO extends DAO {
+    public User getUser(Integer id) {
+        try {
+            String query = "SELECT * FROM masc.users WHERE id = ?;";
+            PreparedStatement stmt = database.prepareStatement(query);
+
+            stmt.setInt(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return new User(
+                        rs.getInt("id"),
+                        rs.getString("fname"),
+                        rs.getString("lname"),
+                        rs.getInt("school_id"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getInt("type_id")
+                );
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.err.println("Something went wrong when getting user.");
+            System.err.println(e.getMessage());
+        }
+    }
+
     public void insertUser(String fname, String lname, Integer school_id, String email, String password) {
         try {
             String query = "INSERT INTO masc.users (fname, lname, school_id, email, password) VALUES (?,?,?,?,?);";
