@@ -13,6 +13,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class RegisterController {
+
+    @FXML
+    private TextField fld_f_name;
+    @FXML
+    private TextField fld_l_name;
+    @FXML
+    private TextField fld_s_id;
     @FXML
     private TextField fld_email_reg;
     @FXML
@@ -39,7 +46,9 @@ public class RegisterController {
 
     public void register(ActionEvent event) {
         if (fld_email_reg.getText().trim().isEmpty() || fld_pass_reg.getText().isEmpty()
-                || fld_pass2_reg.getText().trim().isEmpty()) {
+                || fld_pass2_reg.getText().trim().isEmpty() ||  fld_f_name.getText().trim().isEmpty()
+                || fld_l_name.getText().trim().isEmpty() || fld_s_id.getText().trim().isEmpty()) {
+
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Bad Input");
             alert.setHeaderText(null);
@@ -53,8 +62,9 @@ public class RegisterController {
             alert.showAndWait();
         } else {
             try {
-                //TODO: Create input for missing fields
-                dao.insertUser("Temp","Temp",1234,fld_email_reg.getText().trim(), fld_pass_reg.getText().trim());
+                dao.insertUser(fld_f_name.getText().trim(),fld_l_name.getText().trim(),Integer.parseInt(fld_s_id.getText().trim())
+                        ,fld_email_reg.getText().trim(), fld_pass_reg.getText().trim());
+
                 Parent root = login_loader.load();
                 Stage stage = Main.getPrimaryStage();
                 stage.setScene(new Scene(root));
