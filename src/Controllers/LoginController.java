@@ -1,7 +1,7 @@
 package Controllers;
 
 import Application.Main;
-import Data.CredDAO;
+import Data.UserDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,7 +20,7 @@ public class LoginController {
     @FXML
     private PasswordField fld_pass;
 
-    CredDAO dao = new CredDAO();
+    UserDAO dao = new UserDAO();
     FXMLLoader dashboard_loader = new FXMLLoader(getClass().getResource("/Resources/registrar_dashboard.fxml"));
     FXMLLoader reg_loader = new FXMLLoader(getClass().getResource("/Resources/register.fxml"));
     Alert alert;
