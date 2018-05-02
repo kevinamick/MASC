@@ -32,6 +32,8 @@ public class UserDAO extends DAO {
             System.err.println("Something went wrong when getting user.");
             System.err.println(e.getMessage());
         }
+
+        return null;
     }
 
     public void insertUser(String fname, String lname, Integer school_id, String email, String password) {
