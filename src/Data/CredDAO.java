@@ -27,19 +27,15 @@ public class CredDAO {
         return saltStr;
     }
 
-    public void insertUser(String email, String password) {
+    public void insertUser(String email, String password) throws SQLException {
         String ID = genKey();
         String query = "INSERT INTO masc.cred(ID,email,password) VALUES(?,?,?);";
-        try {
-            PreparedStatement stmt = database.prepareStatement(query);
-            stmt.setString(1,ID);
-            stmt.setString(2,email);
-            stmt.setString(3,password);
-            stmt.execute();
-        } catch (SQLException e) {
-            System.err.println("Something went wrong when inserting record");
-            System.err.println(e.getMessage());
-        }
+
+        PreparedStatement stmt = database.prepareStatement(query);
+        stmt.setString(1,ID);
+        stmt.setString(2,email);
+        stmt.setString(3,password);
+        stmt.execute();
     }
 
     public boolean validateUser(String email, String password) {
