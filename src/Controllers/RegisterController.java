@@ -53,7 +53,8 @@ public class RegisterController {
             alert.showAndWait();
         } else {
             try {
-                dao.insertUser(fld_email_reg.getText().trim(), fld_pass_reg.getText().trim());
+                //TODO: Create input for missing fields
+                dao.insertUser("Temp","Temp",1234,fld_email_reg.getText().trim(), fld_pass_reg.getText().trim());
                 Parent root = login_loader.load();
                 Stage stage = Main.getPrimaryStage();
                 stage.setScene(new Scene(root));
