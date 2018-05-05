@@ -24,6 +24,7 @@ public class User {
 
     public User(int id, String fname, String lname, int school_id,
                 String email, String password, int type_id) {
+        this();
         this.id.set(id);
         this.fname.set(fname);
         this.lname.set(lname);
@@ -31,6 +32,12 @@ public class User {
         this.email.set(email);
         this.password.set(password);
         this.type_id.set(type_id);
+    }
+
+    public UserType getUserType() {
+        UserTypeDAO userTypeDao = new UserTypeDAO();
+
+        return userTypeDao.getUserType(this.type_id.get());
     }
 
     public int getUserId() {

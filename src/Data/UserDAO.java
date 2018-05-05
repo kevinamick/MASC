@@ -82,9 +82,7 @@ public class UserDAO extends DAO {
         }
     }
 
-    public boolean validateUser(String email, String password) {
-        boolean result = false;
-
+    public User validateUser(String email, String password) {
         try {
             String query = "SELECT * FROM masc.users WHERE email=? AND password=?;";
             PreparedStatement stmt = database.prepareStatement(query);
@@ -92,13 +90,27 @@ public class UserDAO extends DAO {
             stmt.setString(1,email);
             stmt.setString(2,password);
 
-            result = stmt.executeQuery().first();
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return new User(
+                        rs.getInt("id"),
+                        rs.getString("fname"),
+                        rs.getString("lname"),
+                        rs.getInt("school_id"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getInt("type_id")
+                );
+            } else {
+                return null;
+            }
         } catch (SQLException e) {
             System.err.println("Something went wrong when validating user.");
             System.err.println(e.getMessage());
         }
 
-        return result;
+        return null;
     }
 
     //public String genKey() {

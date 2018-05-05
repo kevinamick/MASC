@@ -2,6 +2,7 @@ package Controllers;
 
 import Application.Main;
 import Data.Event;
+import Data.User;
 import Data.UserDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +24,7 @@ public class LoginController {
 
     UserDAO dao = new UserDAO();
     FXMLLoader dashboard_loader = new FXMLLoader(getClass().getResource("/Resources/registrar_dashboard.fxml"));
+    FXMLLoader advisor_dashboard_loader = new FXMLLoader(getClass().getResource("/Resources/advisor_dashboard.fxml"));
     FXMLLoader reg_loader = new FXMLLoader(getClass().getResource("/Resources/register.fxml"));
     Alert alert;
 
@@ -40,13 +42,23 @@ public class LoginController {
             alert.setContentText("Please Enter an Email and Password");
             alert.showAndWait();
         } else {
-            boolean validated = dao.validateUser(fld_email.getText().trim(), fld_pass.getText().trim());
-            if (validated) {
+            // Validate the user
+            User user = dao.validateUser(fld_email.getText().trim(), fld_pass.getText().trim());
+
+            if (user != null) {
                 try {
-                    Stage stage = Main.getPrimaryStage();
-                    Parent root = dashboard_loader.load();
-                    stage.setScene(new Scene(root));
-                    stage.show();
+                    // direct to correct dashboard
+                    if (user.getUserType().access > 0) {
+                        Stage stage = Main.getPrimaryStage();
+                        Parent root = dashboard_loader.load();
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    } else {
+                        Stage stage = Main.getPrimaryStage();
+                        Parent root = advisor_dashboard_loader.load();
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    }
                 } catch (Exception e) {
                     System.err.println("Something went wrong when logging in");
                     System.err.println(e.getMessage());
