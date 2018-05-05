@@ -2,6 +2,7 @@ package Controllers;
 
 import Application.Main;
 import Data.Event;
+import Data.EventDAO;
 import Data.User;
 import Data.UserDAO;
 import javafx.fxml.FXML;
@@ -29,9 +30,12 @@ public class LoginController {
     Alert alert;
 
     public void setData() {
+        // get event list
+        EventDAO eventDao = new EventDAO();
+
         // set event list
         event.getItems().clear();
-        event.getItems().addAll(new Event());
+        event.getItems().addAll(eventDao.getEvents());
     }
 
     public void login(ActionEvent event) {
