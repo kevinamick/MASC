@@ -70,7 +70,7 @@ public class RegisterController {
                 UserTypeDAO userTypeDao = new UserTypeDAO();
                 UserType userType = userTypeDao.getUserTypeByName("Advisor");
                 dao.insertUser(new User(
-                        null,
+                        0,
                         fld_f_name.getText().trim(),
                         fld_l_name.getText().trim(),
                         Integer.parseInt(fld_s_id.getText().trim()),

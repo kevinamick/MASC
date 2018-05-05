@@ -29,6 +29,6 @@ public class Event {
     }
 
     public String toString() {
-        return this.name;
+        return this.name.toString();
     }
 }

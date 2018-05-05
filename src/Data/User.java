@@ -22,15 +22,15 @@ public class User {
         this.type_id = new SimpleIntegerProperty();
     }
 
-    public User(SimpleIntegerProperty id, SimpleStringProperty fname, SimpleStringProperty lname, SimpleIntegerProperty school_id,
-                SimpleStringProperty email, SimpleStringProperty password, SimpleIntegerProperty type_id) {
-        this.id = id;
-        this.fname = fname;
-        this.lname = lname;
-        this.school_id = school_id;
-        this.email = email;
-        this.password = password;
-        this.type_id = type_id;
+    public User(int id, String fname, String lname, int school_id,
+                String email, String password, int type_id) {
+        this.id.set(id);
+        this.fname.set(fname);
+        this.lname.set(lname);
+        this.school_id.set(school_id);
+        this.email.set(email);
+        this.password.set(password);
+        this.type_id.set(type_id);
     }
 
     public int getUserId() {

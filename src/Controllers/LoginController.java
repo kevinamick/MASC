@@ -29,7 +29,7 @@ public class LoginController {
     public void setData() {
         // set event list
         event.getItems().clear();
-        event.getItems().addAll(new Event(1, "test1"));
+        event.getItems().addAll(new Event());
     }
 
     public void login(ActionEvent event) {
