@@ -1,7 +1,10 @@
 package Controllers;
 
 import Application.Main;
+import Data.User;
 import Data.UserDAO;
+import Data.UserType;
+import Data.UserTypeDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -64,8 +67,17 @@ public class RegisterController {
             alert.showAndWait();
         } else {
             try {
-                dao.insertUser(fld_f_name.getText().trim(),fld_l_name.getText().trim(),Integer.parseInt(fld_s_id.getText().trim())
-                        ,fld_email_reg.getText().trim(), fld_pass_reg.getText().trim(), Integer.parseInt(fld_type_id.getText().trim()));
+                UserTypeDAO userTypeDao = new UserTypeDAO();
+                UserType userType = userTypeDao.getUserTypeByName("Advisor");
+                dao.insertUser(new User(
+                        null,
+                        fld_f_name.getText().trim(),
+                        fld_l_name.getText().trim(),
+                        Integer.parseInt(fld_s_id.getText().trim()),
+                        fld_email_reg.getText().trim(),
+                        fld_pass_reg.getText().trim(),
+                        userType.id
+                ));
 
                 Parent root = login_loader.load();
                 Stage stage = Main.getPrimaryStage();

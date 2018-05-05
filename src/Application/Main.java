@@ -1,5 +1,6 @@
 package Application;
 
+import Controllers.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -35,8 +36,13 @@ public class Main extends Application {
         login_loader = new FXMLLoader(getClass().getResource("/Resources/login.fxml"));
         Parent root = login_loader.load();
 
+        LoginController loginController = login_loader.getController();
+
         // Set the scene, aaaaand showtime.
         window.setScene(new Scene(root));
         window.show();
+
+        // Set the data
+        loginController.setData();
     }
 }

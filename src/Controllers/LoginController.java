@@ -1,14 +1,13 @@
 package Controllers;
 
 import Application.Main;
+import Data.Event;
 import Data.UserDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
@@ -19,14 +18,21 @@ public class LoginController {
     private TextField fld_email;
     @FXML
     private PasswordField fld_pass;
+    @FXML
+    private ChoiceBox event;
 
     UserDAO dao = new UserDAO();
     FXMLLoader dashboard_loader = new FXMLLoader(getClass().getResource("/Resources/registrar_dashboard.fxml"));
     FXMLLoader reg_loader = new FXMLLoader(getClass().getResource("/Resources/register.fxml"));
     Alert alert;
 
-    public void login(ActionEvent event) {
+    public void setData() {
+        // set event list
+        event.getItems().clear();
+        event.getItems().addAll(new Event(1, "test1"));
+    }
 
+    public void login(ActionEvent event) {
         if (fld_email.getText().trim().isEmpty() || fld_pass.getText().trim().isEmpty()) {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Bad Input");

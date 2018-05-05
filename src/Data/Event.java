@@ -27,4 +27,8 @@ public class Event {
     public void setEventName(String name) {
         this.name.set(name);
     }
+
+    public String toString() {
+        return this.name;
+    }
 }
