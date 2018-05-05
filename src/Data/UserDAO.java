@@ -58,7 +58,7 @@ public class UserDAO extends DAO {
         boolean result = false;
 
         try {
-            String query = "SELECT * FROM masc.cred WHERE email=? AND password=?;";
+            String query = "SELECT * FROM masc.users WHERE email=? AND password=?;";
             PreparedStatement stmt = database.prepareStatement(query);
 
             stmt.setString(1,email);
