@@ -19,6 +19,7 @@ public class Database {
         } catch (Exception e) {
             System.err.println("Something went wrong when connecting to database.");
             System.err.println(e.getMessage());
+            e.printStackTrace();
         }
 
         return driver;

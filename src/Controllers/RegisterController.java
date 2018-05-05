@@ -23,6 +23,8 @@ public class RegisterController {
     @FXML
     private TextField fld_email_reg;
     @FXML
+    private TextField fld_type_id;
+    @FXML
     private PasswordField fld_pass_reg;
     @FXML
     private PasswordField fld_pass2_reg;
@@ -63,7 +65,7 @@ public class RegisterController {
         } else {
             try {
                 dao.insertUser(fld_f_name.getText().trim(),fld_l_name.getText().trim(),Integer.parseInt(fld_s_id.getText().trim())
-                        ,fld_email_reg.getText().trim(), fld_pass_reg.getText().trim());
+                        ,fld_email_reg.getText().trim(), fld_pass_reg.getText().trim(), Integer.parseInt(fld_type_id.getText().trim()));
 
                 Parent root = login_loader.load();
                 Stage stage = Main.getPrimaryStage();

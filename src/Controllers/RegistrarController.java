@@ -1,14 +1,19 @@
 package Controllers;
 
 import Application.Main;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
 
 public class RegistrarController {
+
+    @FXML
+    Button btn_manage_schools;
 
     FXMLLoader schools_loader = new FXMLLoader(getClass().getResource("/Resources/manage_schools.fxml"));
     FXMLLoader events_loader = new FXMLLoader(getClass().getResource("/Resources/manage_events.fxml"));

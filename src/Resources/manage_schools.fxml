@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controllers.SchoolsController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="509.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SchoolsController">
+   <children>
+      <TableView fx:id="tbl_school" layoutX="83.0" layoutY="56.0" prefHeight="288.0" prefWidth="343.0">
+        <columns>
+          <TableColumn fx:id="col_sId" prefWidth="119.0" text="School Id">
+                  <cellValueFactory>
+                      <PropertyValueFactory property="id" />
+                  </cellValueFactory>
+          </TableColumn>
+          <TableColumn fx:id="col_sName" prefWidth="117.0" text="School Name">
+                <cellValueFactory>
+                    <PropertyValueFactory property="name" />
+                </cellValueFactory>
+          </TableColumn>
+            <TableColumn fx:id="col_rId" prefWidth="106.0" text="Region Id">
+                <cellValueFactory>
+                    <PropertyValueFactory property="region_id" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+      </TableView>
+      <Label layoutX="204.0" layoutY="23.0" text="Manage Schools" />
+   </children>
 </AnchorPane>

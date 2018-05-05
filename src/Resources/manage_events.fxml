@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controllers.EventsController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="509.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EventsController">
+    <children>
+        <TableView fx:id="tbl_events" layoutX="83.0" layoutY="56.0" prefHeight="288.0" prefWidth="343.0">
+            <columns>
+                <TableColumn fx:id="col_eId" prefWidth="75.0" text="Event Id">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="eventId" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="col_eName" prefWidth="176.0" text="Event Name">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="eventName" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+        <Label layoutX="204.0" layoutY="23.0" text="Manage Events" />
+    </children>
 </AnchorPane>

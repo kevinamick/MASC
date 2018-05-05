@@ -1,5 +1,8 @@
 package Data;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,15 +19,14 @@ public class UserDAO extends DAO {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return new User(
-                        rs.getInt("id"),
-                        rs.getString("fname"),
-                        rs.getString("lname"),
-                        rs.getInt("school_id"),
-                        rs.getString("email"),
-                        rs.getString("password"),
-                        rs.getInt("type_id")
-                );
+                User user = new User();
+                user.setUserId(rs.getInt("id"));
+                user.setFname(rs.getString("fname"));
+                user.setLname(rs.getString("lname"));
+                user.setSchool_id(rs.getInt("school_id"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                user.setType_id(rs.getInt("type_id"));
             } else {
                 return null;
             }
@@ -36,15 +38,41 @@ public class UserDAO extends DAO {
         return null;
     }
 
-    public void insertUser(String fname, String lname, Integer school_id, String email, String password) {
+    public ObservableList getAllUsers() {
+        ObservableList<User> data = FXCollections.observableArrayList();
+        String query = "SELECT * FROM masc.users";
+
         try {
-            String query = "INSERT INTO masc.users (fname, lname, school_id, email, password) VALUES (?,?,?,?,?);";
+            PreparedStatement stmt = database.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                User user = new User();
+                user.setUserId(rs.getInt("id"));
+                user.setFname(rs.getString("fname"));
+                user.setLname(rs.getString("lname"));
+                user.setSchool_id(rs.getInt("school_id"));
+                user.setEmail(rs.getString("email"));
+                data.add(user);
+            }
+            return data;
+        } catch (Exception e) {
+            System.err.println("Something went wrong when getting all users");
+            System.err.println(e.getMessage());
+        }
+        return null;
+    }
+
+    public void insertUser(String fname, String lname, Integer school_id, String email, String password, Integer type_id) {
+        try {
+            String query = "INSERT INTO masc.users (fname, lname, school_id, email, password, type_id) VALUES (?,?,?,?,?,?);";
             PreparedStatement stmt = database.prepareStatement(query);
 
             stmt.setString(1, fname);
             stmt.setString(2, lname);
             stmt.setInt(3, school_id);
             stmt.setString(4, email);
+            stmt.setInt(6,type_id);
+            //TODO: encrypt this
             stmt.setString(5, password); // plain-text (uh-oh)
 
             stmt.execute();
@@ -58,7 +86,7 @@ public class UserDAO extends DAO {
         boolean result = false;
 
         try {
-            String query = "SELECT * FROM masc.cred WHERE email=? AND password=?;";
+            String query = "SELECT * FROM masc.users WHERE email=? AND password=?;";
             PreparedStatement stmt = database.prepareStatement(query);
 
             stmt.setString(1,email);

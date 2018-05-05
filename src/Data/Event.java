@@ -1,13 +1,30 @@
 package Data;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public class Event {
-    public Integer id;
-    public String name;
+    public SimpleIntegerProperty id;
+    public SimpleStringProperty name;
 
-    public Event() {}
+    public Event() {
+        id = new SimpleIntegerProperty();
+        name = new SimpleStringProperty();
+    }
 
-    public Event(Integer id, String name) {
-        this.id = id;
-        this.name = name;
+    public int getEventId() {
+        return id.get();
+    }
+
+    public void setEventId(int id) {
+        this.id.set(id);
+    }
+
+    public String getEventName() {
+        return name.get();
+    }
+
+    public void setEventName(String name) {
+        this.name.set(name);
     }
 }
