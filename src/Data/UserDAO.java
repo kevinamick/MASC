@@ -36,16 +36,17 @@ public class UserDAO extends DAO {
         return null;
     }
 
-    public void insertUser(String fname, String lname, Integer school_id, String email, String password) {
+    public void insertUser(User user) {
         try {
-            String query = "INSERT INTO masc.users (fname, lname, school_id, email, password) VALUES (?,?,?,?,?);";
+            String query = "INSERT INTO masc.users (fname, lname, school_id, email, password, type_id) VALUES (?,?,?,?,?,?);";
             PreparedStatement stmt = database.prepareStatement(query);
 
-            stmt.setString(1, fname);
-            stmt.setString(2, lname);
-            stmt.setInt(3, school_id);
-            stmt.setString(4, email);
-            stmt.setString(5, password); // plain-text (uh-oh)
+            stmt.setString(1, user.fname);
+            stmt.setString(2, user.lname);
+            stmt.setInt(3, user.school_id);
+            stmt.setString(4, user.email);
+            stmt.setString(5, user.password); // plain-text (uh-oh)
+            stmt.setInt(6, user.type_id);
 
             stmt.execute();
         } catch (SQLException e) {
