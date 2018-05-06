@@ -1,6 +1,7 @@
 package Data;
 
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.ObservableList;
 
 public class Invoice {
     public SimpleIntegerProperty id;
@@ -17,6 +18,18 @@ public class Invoice {
         EventDAO eventDao = new EventDAO();
 
         return eventDao.getEvent(this.getEventId());
+    }
+
+    public ObservableList<InvoiceRow> getInvoiceRows() {
+        InvoiceDAO invoiceDao = new InvoiceDAO();
+
+        return invoiceDao.getInvoiceRows(this.getId());
+    }
+
+    public ObservableList<Attendee> getAttendees() {
+        InvoiceDAO invoiceDao = new InvoiceDAO();
+
+        return invoiceDao.getAttendees(this.getId());
     }
 
     public int getId() {
