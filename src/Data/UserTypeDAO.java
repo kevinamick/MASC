@@ -1,5 +1,8 @@
 package Data;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,6 +30,32 @@ public class UserTypeDAO extends DAO {
         } catch (SQLException e) {
             System.err.println("Something went wrong when getting user.");
             System.err.println(e.getMessage());
+        }
+
+        return null;
+    }
+
+    public ObservableList getUserTypes() {
+        ObservableList<UserType> data = FXCollections.observableArrayList();
+        try {
+            String query = "SELECT * FROM masc.user_types";
+            PreparedStatement stmt = database.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+
+            while(rs.next()) {
+                UserType utype = new UserType();
+                utype.setId(rs.getInt("id"));
+                utype.setName(rs.getString("name"));
+                utype.setAccess(rs.getInt("access"));
+
+                data.add(utype);
+            }
+
+            return data;
+        } catch (Exception e) {
+            System.err.println("Something went wrong when getting user types.");
+            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
 
         return null;

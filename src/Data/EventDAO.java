@@ -5,8 +5,35 @@ import javafx.collections.ObservableList;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class EventDAO extends DAO {
+    public Event getEvent(Integer id) {
+        try {
+            String query = "SELECT * FROM masc.events WHERE id = ?;";
+            PreparedStatement stmt = database.prepareStatement(query);
+
+            stmt.setInt(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Event event = new Event();
+                event.setEventId(rs.getInt("id"));
+                event.setEventName(rs.getString("name"));
+
+                return event;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.err.println("Something went wrong when getting event.");
+            System.err.println(e.getMessage());
+        }
+
+        return null;
+    }
+
     public ObservableList getEvents() {
         ObservableList<Event> data = FXCollections.observableArrayList();
         try {
@@ -24,10 +51,53 @@ public class EventDAO extends DAO {
 
             return data;
         } catch (Exception e) {
-            System.err.println("Something went wrong when getting schools.");
+            System.err.println("Something went wrong when getting events.");
             System.err.println(e.getMessage());
         }
 
         return null;
+    }
+
+    public void updateEvent(Event event) {
+        try {
+            String query = "UPDATE masc.events SET name = ? WHERE id = ?;";
+            PreparedStatement stmt = database.prepareStatement(query);
+
+            stmt.setString(1, event.getEventName());
+            stmt.setInt(2, event.getEventId());
+
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.err.println("Something went wrong when updating event.");
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void deleteEvent(Event event) {
+        try {
+            String query = "DELETE FROM masc.events WHERE id = ?;";
+            PreparedStatement stmt = database.prepareStatement(query);
+
+            stmt.setInt(1, event.getEventId());
+
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.err.println("Something went wrong when deleting event.");
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void insertEvent(Event event) {
+        try {
+            String query = "INSERT INTO masc.events (name) VALUES (?);";
+            PreparedStatement stmt = database.prepareStatement(query);
+
+            stmt.setString(1, event.getEventName());
+
+            stmt.execute();
+        } catch (SQLException e) {
+            System.err.println("Something went wrong when inserting event.");
+            System.err.println(e.getMessage());
+        }
     }
 }

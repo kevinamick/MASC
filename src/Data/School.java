@@ -37,4 +37,28 @@ public class School {
     public void setRegionId(int regionId) {
         this.region_id.set(regionId);
     }
+
+    public Region getRegion() {
+        RegionDAO regionDao = new RegionDAO();
+
+        return regionDao.getRegion(this.getRegionId());
+    }
+
+    public String toString() { return this.name.get(); }
+
+    @Override
+    public boolean equals(Object object) {
+        int other;
+
+        if (object instanceof School) {
+            other = ((School)object).getSchoolId();
+        } else {
+            return false;
+        }
+
+        if (this.getSchoolId() != other) {
+            return false;
+        }
+        return true;
+    }
 }

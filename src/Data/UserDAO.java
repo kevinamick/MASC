@@ -23,10 +23,12 @@ public class UserDAO extends DAO {
                 user.setUserId(rs.getInt("id"));
                 user.setFname(rs.getString("fname"));
                 user.setLname(rs.getString("lname"));
-                user.setSchool_id(rs.getInt("school_id"));
+                user.setSchoolId(rs.getInt("school_id"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
-                user.setType_id(rs.getInt("type_id"));
+                user.setTypeId(rs.getInt("type_id"));
+
+                return user;
             } else {
                 return null;
             }
@@ -36,6 +38,26 @@ public class UserDAO extends DAO {
         }
 
         return null;
+    }
+
+    public void updateUser(User user) {
+        try {
+            String query = "UPDATE masc.users SET fname = ?, lname = ?, school_id = ?, email = ?, password = ?, type_id = ? WHERE id = ?;";
+            PreparedStatement stmt = database.prepareStatement(query);
+
+            stmt.setString(1, user.getFname());
+            stmt.setString(2, user.getLname());
+            stmt.setInt(3, user.getSchoolId());
+            stmt.setString(4, user.getEmail());
+            stmt.setString(5, user.getPassword());
+            stmt.setInt(6, user.getTypeId());
+            stmt.setInt(7, user.getUserId());
+
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.err.println("Something went wrong when updating user.");
+            System.err.println(e.getMessage());
+        }
     }
 
     public ObservableList getAllUsers() {
@@ -50,7 +72,7 @@ public class UserDAO extends DAO {
                 user.setUserId(rs.getInt("id"));
                 user.setFname(rs.getString("fname"));
                 user.setLname(rs.getString("lname"));
-                user.setSchool_id(rs.getInt("school_id"));
+                user.setSchoolId(rs.getInt("school_id"));
                 user.setEmail(rs.getString("email"));
                 data.add(user);
             }
@@ -67,13 +89,13 @@ public class UserDAO extends DAO {
             String query = "INSERT INTO masc.users (fname, lname, school_id, email, password, type_id) VALUES (?,?,?,?,?,?);";
             PreparedStatement stmt = database.prepareStatement(query);
 
-            stmt.setString(1, user.fname.toString());
-            stmt.setString(2, user.lname.toString());
-            stmt.setInt(3, user.school_id.getValue());
-            stmt.setString(4, user.email.toString());
-            stmt.setInt(6,user.type_id.getValue());
+            stmt.setString(1, user.getFname());
+            stmt.setString(2, user.getLname());
+            stmt.setInt(3, user.getSchoolId());
+            stmt.setString(4, user.getEmail());
+            stmt.setInt(6,user.getTypeId());
             //TODO: encrypt this
-            stmt.setString(5, user.password.toString()); // plain-text (uh-oh)
+            stmt.setString(5, user.getPassword()); // plain-text (uh-oh)
 
             stmt.execute();
         } catch (SQLException e) {
@@ -111,6 +133,20 @@ public class UserDAO extends DAO {
         }
 
         return null;
+    }
+
+    public void deleteUser(User user) {
+        try {
+            String query = "DELETE FROM masc.users WHERE id = ?;";
+            PreparedStatement stmt = database.prepareStatement(query);
+
+            stmt.setInt(1, user.getUserId());
+
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.err.println("Something went wrong when deleting user.");
+            System.err.println(e.getMessage());
+        }
     }
 
     //public String genKey() {

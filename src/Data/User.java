@@ -24,7 +24,15 @@ public class User {
 
     public User(int id, String fname, String lname, int school_id,
                 String email, String password, int type_id) {
-        this();
+        if (this.id == null) {
+            this.id = new SimpleIntegerProperty();
+            this.fname = new SimpleStringProperty();
+            this.lname = new SimpleStringProperty();
+            this.school_id = new SimpleIntegerProperty();
+            this.email = new SimpleStringProperty();
+            this.password = new SimpleStringProperty();
+            this.type_id = new SimpleIntegerProperty();
+        }
         this.id.set(id);
         this.fname.set(fname);
         this.lname.set(lname);
@@ -34,10 +42,21 @@ public class User {
         this.type_id.set(type_id);
     }
 
+    public School getSchool() {
+        SchoolDAO schoolDao = new SchoolDAO();
+
+        return schoolDao.getSchool(this.getSchoolId());
+    }
+
+    public String getFullName() {
+        return this.getFname() + " " + this.getLname();
+    }
+
     public UserType getUserType() {
+        System.out.println(this.getTypeId());
         UserTypeDAO userTypeDao = new UserTypeDAO();
 
-        return userTypeDao.getUserType(this.type_id.get());
+        return userTypeDao.getUserType(this.getTypeId());
     }
 
     public int getUserId() {
@@ -64,11 +83,11 @@ public class User {
         this.lname.set(lname);
     }
 
-    public int getSchool_id() {
+    public int getSchoolId() {
         return school_id.get();
     }
 
-    public void setSchool_id(int school_id) {
+    public void setSchoolId(int school_id) {
         this.school_id.set(school_id);
     }
 
@@ -88,11 +107,11 @@ public class User {
         this.password.set(password);
     }
 
-    public int getType_id() {
+    public int getTypeId() {
         return type_id.get();
     }
 
-    public void setType_id(int type_id) {
+    public void setTypeId(int type_id) {
         this.type_id.set(type_id);
     }
 }

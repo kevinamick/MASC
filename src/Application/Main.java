@@ -25,24 +25,19 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage stage) throws Exception {
 
         // Load window
-        window = primaryStage;
-        setPrimaryStage(window);
-        window.setTitle("Maryland Association of Student Councils");
+        //window = primaryStage;
+        //setPrimaryStage(window);
+        stage.setTitle("Maryland Association of Student Councils");
 
         // Load initial login view
         login_loader = new FXMLLoader(getClass().getResource("/Resources/login.fxml"));
         Parent root = login_loader.load();
 
-        LoginController loginController = login_loader.getController();
-
         // Set the scene, aaaaand showtime.
-        window.setScene(new Scene(root));
-        window.show();
-
-        // Set the data
-        loginController.setData();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }

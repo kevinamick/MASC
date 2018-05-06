@@ -4,11 +4,16 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="495.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegistrarController">
+<Pane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegistrarDashboardController">
    <children>
-      <Label layoutX="193.0" layoutY="48.0" text="Registrar Dashboard" />
-      <Button fx:id="btn_manage_schools" layoutX="174.0" layoutY="105.0" mnemonicParsing="false" onAction="#schools" prefHeight="59.0" prefWidth="147.0" text="Manage Schools" />
-      <Button fx:id="btn_manage_events" layoutX="174.0" layoutY="185.0" mnemonicParsing="false" onAction="#events" prefHeight="59.0" prefWidth="147.0" text="Manage Events" />
-      <Button fx:id="btn_manage_users" layoutX="174.0" layoutY="269.0" mnemonicParsing="false" onAction="#users" prefHeight="59.0" prefWidth="147.0" text="Manage User" />
+      <Label layoutX="333.0" layoutY="69.0" text="Registrar Dashboard" />
+      <Pane layoutX="327.0" layoutY="131.0" prefHeight="296.0" prefWidth="147.0">
+         <children>
+            <Button fx:id="btn_manage_schools" mnemonicParsing="false" onAction="#schools" prefHeight="59.0" prefWidth="147.0" text="Manage Schools" />
+            <Button fx:id="btn_manage_events" layoutY="80.0" mnemonicParsing="false" onAction="#events" prefHeight="59.0" prefWidth="147.0" text="Manage Events" />
+            <Button fx:id="btn_manage_users" layoutY="164.0" mnemonicParsing="false" onAction="#users" prefHeight="59.0" prefWidth="147.0" text="Manage Users" />
+            <Button layoutX="49.0" layoutY="248.0" mnemonicParsing="false" onAction="#back" text="Back" />
+         </children>
+      </Pane>
    </children>
 </Pane>
