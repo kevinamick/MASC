@@ -11,6 +11,8 @@ import java.sql.SQLException;
 public class UserDAO extends DAO {
     public User getUser(Integer id) {
         try {
+            open();
+
             String query = "SELECT * FROM masc.users WHERE id = ?;";
             PreparedStatement stmt = database.prepareStatement(query);
 
@@ -35,6 +37,8 @@ public class UserDAO extends DAO {
         } catch (SQLException e) {
             System.err.println("Something went wrong when getting user.");
             System.err.println(e.getMessage());
+        } finally {
+            close();
         }
 
         return null;
@@ -42,6 +46,8 @@ public class UserDAO extends DAO {
 
     public void updateUser(User user) {
         try {
+            open();
+
             String query = "UPDATE masc.users SET fname = ?, lname = ?, school_id = ?, email = ?, password = ?, type_id = ? WHERE id = ?;";
             PreparedStatement stmt = database.prepareStatement(query);
 
@@ -57,6 +63,8 @@ public class UserDAO extends DAO {
         } catch (Exception e) {
             System.err.println("Something went wrong when updating user.");
             System.err.println(e.getMessage());
+        } finally {
+            close();
         }
     }
 
@@ -65,6 +73,8 @@ public class UserDAO extends DAO {
         String query = "SELECT * FROM masc.users";
 
         try {
+            open();
+
             PreparedStatement stmt = database.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -80,12 +90,16 @@ public class UserDAO extends DAO {
         } catch (Exception e) {
             System.err.println("Something went wrong when getting all users");
             System.err.println(e.getMessage());
+        } finally {
+            close();
         }
         return null;
     }
 
     public void insertUser(User user) {
         try {
+            open();
+
             String query = "INSERT INTO masc.users (fname, lname, school_id, email, password, type_id) VALUES (?,?,?,?,?,?);";
             PreparedStatement stmt = database.prepareStatement(query);
 
@@ -101,11 +115,15 @@ public class UserDAO extends DAO {
         } catch (SQLException e) {
             System.err.println("Something went wrong when inserting user.");
             System.err.println(e.getMessage());
+        } finally {
+            close();
         }
     }
 
     public User validateUser(String email, String password) {
         try {
+            open();
+
             String query = "SELECT * FROM masc.users WHERE email=? AND password=?;";
             PreparedStatement stmt = database.prepareStatement(query);
 
@@ -130,6 +148,8 @@ public class UserDAO extends DAO {
         } catch (SQLException e) {
             System.err.println("Something went wrong when validating user.");
             System.err.println(e.getMessage());
+        } finally {
+            close();
         }
 
         return null;
@@ -137,6 +157,8 @@ public class UserDAO extends DAO {
 
     public void deleteUser(User user) {
         try {
+            open();
+
             String query = "DELETE FROM masc.users WHERE id = ?;";
             PreparedStatement stmt = database.prepareStatement(query);
 
@@ -146,6 +168,8 @@ public class UserDAO extends DAO {
         } catch (Exception e) {
             System.err.println("Something went wrong when deleting user.");
             System.err.println(e.getMessage());
+        } finally {
+            close();
         }
     }
 

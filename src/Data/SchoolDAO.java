@@ -11,6 +11,8 @@ public class SchoolDAO extends DAO {
     public ObservableList getSchools() {
         ObservableList<School> data = FXCollections.observableArrayList();
         try {
+            open();
+
             String query = "SELECT * FROM masc.schools";
             PreparedStatement stmt = database.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
@@ -29,6 +31,8 @@ public class SchoolDAO extends DAO {
             System.err.println("Something went wrong when getting schools.");
             System.err.println(e.getMessage());
             e.printStackTrace();
+        } finally {
+            close();
         }
 
         return null;
@@ -36,6 +40,8 @@ public class SchoolDAO extends DAO {
 
     public School getSchool(Integer id) {
         try {
+            open();
+
             String query = "SELECT * FROM masc.schools WHERE id = ?;";
             PreparedStatement stmt = database.prepareStatement(query);
 
@@ -56,6 +62,8 @@ public class SchoolDAO extends DAO {
         } catch (SQLException e) {
             System.err.println("Something went wrong when getting school.");
             System.err.println(e.getMessage());
+        } finally {
+            close();
         }
 
         return null;
@@ -63,6 +71,8 @@ public class SchoolDAO extends DAO {
 
     public void updateSchool(School school) {
         try {
+            open();
+
             String query = "UPDATE masc.schools SET region_id = ?, name = ? WHERE id = ?;";
             PreparedStatement stmt = database.prepareStatement(query);
 
@@ -74,11 +84,15 @@ public class SchoolDAO extends DAO {
         } catch (Exception e) {
             System.err.println("Something went wrong when updating school.");
             System.err.println(e.getMessage());
+        } finally {
+            close();
         }
     }
 
     public void deleteSchool(School school) {
         try {
+            open();
+
             String query = "DELETE FROM masc.schools WHERE id = ?;";
             PreparedStatement stmt = database.prepareStatement(query);
 
@@ -88,11 +102,15 @@ public class SchoolDAO extends DAO {
         } catch (Exception e) {
             System.err.println("Something went wrong when deleting school.");
             System.err.println(e.getMessage());
+        } finally {
+            close();
         }
     }
 
     public void insertSchool(School school) {
         try {
+            open();
+
             String query = "INSERT INTO masc.schools (name, region_id) VALUES (?,?);";
             PreparedStatement stmt = database.prepareStatement(query);
 
@@ -103,6 +121,8 @@ public class SchoolDAO extends DAO {
         } catch (SQLException e) {
             System.err.println("Something went wrong when inserting school.");
             System.err.println(e.getMessage());
+        } finally {
+            close();
         }
     }
 }

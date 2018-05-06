@@ -10,6 +10,8 @@ import java.sql.SQLException;
 public class RegionDAO extends DAO {
     public Region getRegion(Integer id) {
         try {
+            open();
+
             String query = "SELECT * FROM masc.regions WHERE id = ?;";
             PreparedStatement stmt = database.prepareStatement(query);
 
@@ -30,6 +32,8 @@ public class RegionDAO extends DAO {
         } catch (SQLException e) {
             System.err.println("Something went wrong when getting user.");
             System.err.println(e.getMessage());
+        } finally {
+            close();
         }
 
         return null;
@@ -38,6 +42,8 @@ public class RegionDAO extends DAO {
     public ObservableList getRegions() {
         ObservableList<Region> data = FXCollections.observableArrayList();
         try {
+            open();
+
             String query = "SELECT * FROM masc.regions";
             PreparedStatement stmt = database.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
@@ -56,6 +62,8 @@ public class RegionDAO extends DAO {
             System.err.println("Something went wrong when getting schools.");
             System.err.println(e.getMessage());
             e.printStackTrace();
+        } finally {
+            close();
         }
 
         return null;

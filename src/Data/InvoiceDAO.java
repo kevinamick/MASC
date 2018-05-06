@@ -10,6 +10,8 @@ import java.sql.SQLException;
 public class InvoiceDAO extends DAO {
     public Invoice getInvoice(Integer id) {
         try {
+            open();
+
             String query = "SELECT * FROM masc.invoices WHERE id = ?;";
             PreparedStatement stmt = database.prepareStatement(query);
 
@@ -30,6 +32,8 @@ public class InvoiceDAO extends DAO {
         } catch (SQLException e) {
             System.err.println("Something went wrong when getting invoice.");
             System.err.println(e.getMessage());
+        } finally {
+            close();
         }
 
         return null;
@@ -40,6 +44,8 @@ public class InvoiceDAO extends DAO {
         String query = "SELECT * FROM masc.invoices WHERE user_id = ? AND event_id = ?;";
 
         try {
+            open();
+
             PreparedStatement stmt = database.prepareStatement(query);
 
             stmt.setInt(1, user.getUserId());
@@ -59,7 +65,10 @@ public class InvoiceDAO extends DAO {
         } catch (Exception e) {
             System.err.println("Something went wrong when getting invoices");
             System.err.println(e.getMessage());
+        } finally {
+            close();
         }
+
         return null;
     }
 }

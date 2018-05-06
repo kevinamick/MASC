@@ -10,6 +10,8 @@ import java.sql.SQLException;
 public class EventDAO extends DAO {
     public Event getEvent(Integer id) {
         try {
+            open();
+
             String query = "SELECT * FROM masc.events WHERE id = ?;";
             PreparedStatement stmt = database.prepareStatement(query);
 
@@ -29,6 +31,8 @@ public class EventDAO extends DAO {
         } catch (SQLException e) {
             System.err.println("Something went wrong when getting event.");
             System.err.println(e.getMessage());
+        } finally {
+            close();
         }
 
         return null;
@@ -37,6 +41,7 @@ public class EventDAO extends DAO {
     public ObservableList getEvents() {
         ObservableList<Event> data = FXCollections.observableArrayList();
         try {
+            open();
             String query = "SELECT * FROM masc.events";
             PreparedStatement stmt = database.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
@@ -53,6 +58,8 @@ public class EventDAO extends DAO {
         } catch (Exception e) {
             System.err.println("Something went wrong when getting events.");
             System.err.println(e.getMessage());
+        } finally {
+            close();
         }
 
         return null;
@@ -60,6 +67,7 @@ public class EventDAO extends DAO {
 
     public void updateEvent(Event event) {
         try {
+            open();
             String query = "UPDATE masc.events SET name = ? WHERE id = ?;";
             PreparedStatement stmt = database.prepareStatement(query);
 
@@ -70,11 +78,14 @@ public class EventDAO extends DAO {
         } catch (Exception e) {
             System.err.println("Something went wrong when updating event.");
             System.err.println(e.getMessage());
+        } finally {
+            close();
         }
     }
 
     public void deleteEvent(Event event) {
         try {
+            open();
             String query = "DELETE FROM masc.events WHERE id = ?;";
             PreparedStatement stmt = database.prepareStatement(query);
 
@@ -84,11 +95,14 @@ public class EventDAO extends DAO {
         } catch (Exception e) {
             System.err.println("Something went wrong when deleting event.");
             System.err.println(e.getMessage());
+        } finally {
+            close();
         }
     }
 
     public void insertEvent(Event event) {
         try {
+            open();
             String query = "INSERT INTO masc.events (name) VALUES (?);";
             PreparedStatement stmt = database.prepareStatement(query);
 
@@ -98,6 +112,8 @@ public class EventDAO extends DAO {
         } catch (SQLException e) {
             System.err.println("Something went wrong when inserting event.");
             System.err.println(e.getMessage());
+        } finally {
+            close();
         }
     }
 }
