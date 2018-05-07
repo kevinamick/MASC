@@ -27,7 +27,7 @@ public class LoginController extends Controller {
     @FXML
     private PasswordField fld_pass;
     @FXML
-    private ChoiceBox<Event> event;
+    private ChoiceBox<Event> cb_event;
 
     UserDAO dao = new UserDAO();
     Alert alert;
@@ -38,8 +38,8 @@ public class LoginController extends Controller {
         EventDAO eventDao = new EventDAO();
 
         // set event list
-        event.getItems().clear();
-        event.getItems().addAll(eventDao.getEvents());
+        cb_event.getItems().clear();
+        cb_event.getItems().addAll(eventDao.getEvents());
 
         // submit on enter from password
         fld_pass.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -70,11 +70,11 @@ public class LoginController extends Controller {
                         redirect("registrar_dashboard");
                     } else {
                         // ensure event was selected
-                        if (this.event.getValue() == null) {
+                        if (cb_event.getValue() == null) {
                             showEventAlert();
                         } else {
                             AdvisorDashboardController controller = redirect("advisor_dashboard").getController();
-                            controller.setEvent(this.event.getValue());
+                            controller.setEvent(cb_event.getValue());
                             controller.setUser(user);
                             controller.loadData();
                         }

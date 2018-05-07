@@ -48,6 +48,16 @@ public class Attendee {
         this.invoice_id = invoice_id;
     }
 
+    public Role getRole() {
+        RoleDAO roleDao = new RoleDAO();
+
+        return roleDao.getRole(this.getAttendeeRoleId());
+    }
+
+    public String getFullName() {
+        return this.getAttendeeFname() + " " + this.getAttendeeLname();
+    }
+
     public int getAttendeeId() {
         return id.get();
     }

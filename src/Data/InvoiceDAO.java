@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class InvoiceDAO extends DAO {
 
@@ -45,7 +46,7 @@ public class InvoiceDAO extends DAO {
 
         String query = "SELECT COUNT(*) as count, R.name, ER.price " +
                 "FROM masc.attendees as A, masc.roles as R, masc.event_roles AS ER, masc.invoices AS I " +
-                "WHERE I.id = ? AND A.invoice_id = I.id AND ER.role_id = A.role_id AND ER.event_id = I.id AND A.role_id = R.id AND A.invoice_id = I.id " +
+                "WHERE I.id = ? AND A.invoice_id = I.id AND ER.role_id = A.role_id AND ER.event_id = I.event_id AND A.role_id = R.id AND A.invoice_id = I.id " +
                 "GROUP BY A.role_id;";
 
         try {
@@ -142,6 +143,34 @@ public class InvoiceDAO extends DAO {
             return data;
         } catch (Exception e) {
             System.err.println("Something went wrong when getting invoices");
+            System.err.println(e.getMessage());
+        } finally {
+            close();
+        }
+
+        return null;
+    }
+
+    public Integer insertInvoice(Invoice invoice) {
+        try {
+            open();
+
+            String query = "INSERT INTO masc.invoices (user_id, event_id) VALUES (?,?);";
+            PreparedStatement stmt = database.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+
+            stmt.setInt(1, invoice.getUserId());
+            stmt.setInt(2, invoice.getEventId());
+
+            stmt.execute();
+
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                return rs.getInt(1);
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.err.println("Something went wrong when inserting invoice.");
             System.err.println(e.getMessage());
         } finally {
             close();

@@ -1,11 +1,24 @@
 package Controllers;
 
+import Data.Event;
+import Data.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
 public class Controller {
     @FXML protected Pane rootPane;
+
+    public User user;
+    public Event event;
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
 
     protected FXMLLoader redirect(String view) {
         try {

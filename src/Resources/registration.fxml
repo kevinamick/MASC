@@ -3,15 +3,15 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegistrationController">
    <children>
       <Text layoutX="361.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registration" />
-      <Button layoutX="373.0" layoutY="415.0" mnemonicParsing="false" onAction="#back" text="Back" />
-      <TableView fx:id="tbl_attendees" layoutX="62.0" layoutY="102.0" prefHeight="291.0" prefWidth="672.0">
+      <Button layoutX="62.0" layoutY="439.0" mnemonicParsing="false" onAction="#back" text="Back" />
+      <TableView fx:id="tbl_attendees" layoutX="62.0" layoutY="134.0" prefHeight="291.0" prefWidth="672.0">
         <columns>
           <TableColumn fx:id="col_aId" prefWidth="48.0" text="Id">
              <cellValueFactory>
@@ -50,5 +50,7 @@
            </TableColumn>
         </columns>
       </TableView>
+      <Button layoutX="626.0" layoutY="95.0" mnemonicParsing="false" onAction="#newAttendee" text="Add Attendee" />
+      <Button layoutX="570.0" layoutY="439.0" mnemonicParsing="false" onAction="#completeRegistration" text="Complete Registration" />
    </children>
 </AnchorPane>

@@ -40,4 +40,24 @@ public class Role {
     public void setName(String name) {
         this.name.set(name);
     }
+
+    public String toString() {
+        return this.getName();
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        int other;
+
+        if (object instanceof Role) {
+            other = ((Role)object).getId();
+        } else {
+            return false;
+        }
+
+        if (this.getId() != other) {
+            return false;
+        }
+        return true;
+    }
 }

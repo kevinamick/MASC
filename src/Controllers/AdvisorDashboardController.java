@@ -18,9 +18,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
 public class AdvisorDashboardController extends Controller {
-    private User user;
-    private Event event;
-
     @FXML
     private TableView<Invoice> tbl_invoices;
     @FXML private TableColumn<Invoice,Integer> col_iId;
@@ -30,7 +27,7 @@ public class AdvisorDashboardController extends Controller {
     @FXML
     void initialize() {
         assert tbl_invoices != null : "fx:id=\"tbl_invoices\" was not injected";
-        loadData();
+        //loadData(); --can't be called here, must be called after data is set
     }
 
     public void loadData() {
@@ -52,18 +49,15 @@ public class AdvisorDashboardController extends Controller {
         controller.fillInvoice();
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
-    }
-
-    public void setUser(User user) { this.user = user; }
-
     public void back(ActionEvent event) {
         redirect("login");
     }
 
     public void newRegistration(ActionEvent event) {
-        redirect("registration");
+        RegistrationController controller = redirect("registration").getController();
+        controller.setEvent(this.event);
+        controller.setUser(this.user);
+        controller.loadData();
     }
 
     private void insertViewButton() {

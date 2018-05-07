@@ -14,8 +14,8 @@ public class RegistrationDAO extends DAO{
             PreparedStatement stmt = database.prepareStatement(query);
 
             stmt.setInt(1, registration.getEventId());
-            stmt.setInt(2,registration.getUserId());
-            stmt.setInt(3,registration.getAttendeeId());
+            stmt.setInt(2, registration.getUserId());
+            stmt.setInt(3, registration.getAttendeeId());
 
             stmt.execute();
 
