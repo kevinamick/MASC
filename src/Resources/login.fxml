@@ -5,13 +5,20 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <Pane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
    <children>
       <!--Logo-->
-      <Label layoutX="264.0" layoutY="73.0" prefHeight="38.0" prefWidth="274.0" text="Maryland Association of Student Councils" textAlignment="CENTER" />
-      <Pane layoutX="245.0" layoutY="165.0">
+      <Label layoutX="188.0" layoutY="187.0" prefHeight="38.0" prefWidth="425.0" text="Maryland Association of Student Councils" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Pane layoutX="244.0" layoutY="269.0">
          <children>
       
                   <!--Email-->
@@ -23,7 +30,7 @@
             <PasswordField fx:id="fld_pass" layoutX="87.0" layoutY="71.0" prefHeight="26.0" prefWidth="225.0" />
       
                   <!--Login-->
-            <Button fx:id="btn_login" layoutX="258.0" layoutY="115.0" mnemonicParsing="false" onAction="#login" text="Login" />
+            <Button fx:id="btn_login" defaultButton="true" layoutX="258.0" layoutY="115.0" mnemonicParsing="false" onAction="#login" text="Login" />
       
                   <!--Register-->
             <Button fx:id="btn_reg" layoutX="87.0" layoutY="114.0" mnemonicParsing="false" onAction="#openRegistration" text="Register" />
@@ -31,5 +38,11 @@
             <ChoiceBox fx:id="event" layoutX="87.0" prefHeight="26.0" prefWidth="225.0" />
          </children>
       </Pane>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="300.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="340.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Registration" />
    </children>
 </Pane>
