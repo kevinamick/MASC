@@ -94,14 +94,14 @@ public class InvoiceDAO extends DAO {
             while (rs.next()) {
                 Attendee attendee = new Attendee();
 
-                attendee.setId(rs.getInt("id"));
-                attendee.setFname(rs.getString("fname"));
-                attendee.setLname(rs.getString("lname"));
-                attendee.setGender(rs.getString("gender"));
-                attendee.setShirt(rs.getString("shirt"));
-                attendee.setRoleId(rs.getInt("role_id"));
-                attendee.setDietPrefs(rs.getString("diet_prefs"));
-                attendee.setInvoiceId(rs.getInt("invoice_id"));
+                attendee.setAttendeeId(rs.getInt("id"));
+                attendee.setAttendeeFname(rs.getString("fname"));
+                attendee.setAttendeeLname(rs.getString("lname"));
+                attendee.setAttendeeGender(rs.getString("gender"));
+                attendee.setAttendeeShirt(rs.getString("shirt"));
+                attendee.setAttendeeRoleId(rs.getInt("role_id"));
+                attendee.setAttendeeDietPrefs(rs.getString("diet_prefs"));
+                attendee.setAttendeeInvoiceId(rs.getInt("invoice_id"));
 
                 data.add(attendee);
             }

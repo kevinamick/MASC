@@ -1,12 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegistrationController">
    <children>
       <Text layoutX="361.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registration" />
-      <Button layoutX="375.0" layoutY="98.0" mnemonicParsing="false" onAction="#back" text="Back" />
+      <Button layoutX="373.0" layoutY="415.0" mnemonicParsing="false" onAction="#back" text="Back" />
+      <TableView id="tbl_attendees" layoutX="62.0" layoutY="102.0" prefHeight="291.0" prefWidth="672.0">
+        <columns>
+          <TableColumn fx:id="col_aId" prefWidth="48.0" text="Id">
+             <cellValueFactory>
+                <PropertyValueFactory property="attendeeId" />
+             </cellValueFactory>
+          </TableColumn>
+          <TableColumn fx:id="col_aFName" prefWidth="76.0" text="First Name">
+             <cellValueFactory>
+                <PropertyValueFactory property="attendeeFName" />
+             </cellValueFactory>
+          </TableColumn>
+           <TableColumn fx:id="col_aLName" prefWidth="77.0" text="Last Name">
+              <cellValueFactory>
+                 <PropertyValueFactory property="attendeeLName" />
+              </cellValueFactory>
+           </TableColumn>
+           <TableColumn fx:id="col_aGender" prefWidth="59.0" text="Gender">
+              <cellValueFactory>
+                 <PropertyValueFactory property="attendeeGender" />
+              </cellValueFactory>
+           </TableColumn>
+           <TableColumn fx:id="col_aShirt" prefWidth="45.0" text="Shirt">
+              <cellValueFactory>
+                 <PropertyValueFactory property="attendeeShirt" />
+              </cellValueFactory>
+           </TableColumn>
+           <TableColumn fx:id="col_aRole" prefWidth="53.0" text="Role Id">
+              <cellValueFactory>
+                 <PropertyValueFactory property="attendeeRole" />
+              </cellValueFactory>
+           </TableColumn>
+           <TableColumn fx:id="col_aDiet" prefWidth="63.0" text="Diet Prefs">
+              <cellValueFactory>
+                 <PropertyValueFactory property="attendeeDietPrefs" />
+              </cellValueFactory>
+           </TableColumn>
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
