@@ -18,6 +18,7 @@ public class Controller {
         } catch (Exception e) {
             System.err.println("Failed to load resource: " + view);
             System.err.println(e.getMessage());
+            e.printStackTrace();
         }
 
         return null;

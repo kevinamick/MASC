@@ -11,7 +11,7 @@
    <children>
       <Text layoutX="361.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registration" />
       <Button layoutX="373.0" layoutY="415.0" mnemonicParsing="false" onAction="#back" text="Back" />
-      <TableView id="tbl_attendees" layoutX="62.0" layoutY="102.0" prefHeight="291.0" prefWidth="672.0">
+      <TableView fx:id="tbl_attendees" layoutX="62.0" layoutY="102.0" prefHeight="291.0" prefWidth="672.0">
         <columns>
           <TableColumn fx:id="col_aId" prefWidth="48.0" text="Id">
              <cellValueFactory>

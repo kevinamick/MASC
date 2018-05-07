@@ -13,11 +13,30 @@ public class Attendee {
     public SimpleStringProperty diet_prefs;
     public SimpleIntegerProperty invoice_id;
 
-    public Attendee() {}
+    public Attendee() {
+        this.id = new SimpleIntegerProperty();
+        this.fname = new SimpleStringProperty();
+        this.lname = new SimpleStringProperty();
+        this.gender = new SimpleStringProperty();
+        this.shirt = new SimpleStringProperty();
+        this.role_id = new SimpleIntegerProperty();
+        this.diet_prefs = new SimpleStringProperty();
+        this.invoice_id = new SimpleIntegerProperty();
+    }
 
     public Attendee(SimpleIntegerProperty id, SimpleStringProperty fname, SimpleStringProperty lname, SimpleStringProperty gender,
                     SimpleStringProperty shirt, SimpleIntegerProperty role_id, SimpleStringProperty diet_prefs,
                     SimpleIntegerProperty invoice_id) {
+        if(this.id == null) {
+            this.id = new SimpleIntegerProperty();
+            this.fname = new SimpleStringProperty();
+            this.lname = new SimpleStringProperty();
+            this.gender = new SimpleStringProperty();
+            this.shirt = new SimpleStringProperty();
+            this.role_id = new SimpleIntegerProperty();
+            this.diet_prefs = new SimpleStringProperty();
+            this.invoice_id = new SimpleIntegerProperty();
+        }
         this.id = id;
         this.fname = fname;
         this.lname = lname;
