@@ -23,20 +23,25 @@ public class RegistrationFormController extends Controller {
 
     public void save(ActionEvent event) {
         RegistrationDAO registrationDao = new RegistrationDAO();
+        AttendeeDAO attendeeDAO = new AttendeeDAO();
 
         if (this.registration == null) {
             this.registration = new Registration();
             this.registration.setEventId(Integer.parseInt(r_event_id.getText()));
             this.registration.setUserId(Integer.parseInt(r_user_id.getText()));
             this.registration.setAttendeeId(attendee.getAttendeeId());
+            attendee.setAttendeeInvoiceId(attendeeDAO.getRegisteredAttendees().size()+1);
+            attendeeDAO.updateAttendee(attendee);
             registrationDao.insertRegistration(this.registration);
         } else {
             this.registration.setEventId(Integer.parseInt(r_event_id.getText()));
             this.registration.setUserId(Integer.parseInt(r_user_id.getText()));
             this.registration.setAttendeeId(attendee.getAttendeeId());
+            attendee.setAttendeeInvoiceId(attendeeDAO.getRegisteredAttendees().size()+1);
+            attendeeDAO.updateAttendee(attendee);
             registrationDao.updateRegistration(this.registration);
         }
 
-        redirect("registration");
+        redirect("advisor_dashboard");
     }
 }

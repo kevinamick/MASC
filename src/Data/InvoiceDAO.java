@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class InvoiceDAO extends DAO {
+
     public Invoice getInvoice(Integer id) {
         try {
             open();

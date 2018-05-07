@@ -30,6 +30,7 @@ public class AdvisorDashboardController extends Controller {
     @FXML
     void initialize() {
         assert tbl_invoices != null : "fx:id=\"tbl_invoices\" was not injected";
+        loadData();
     }
 
     public void loadData() {
