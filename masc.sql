@@ -91,7 +91,7 @@ CREATE TABLE `events` (
   `name` varchar(45) NOT NULL,
   `open` datetime DEFAULT NULL,
   `close` datetime DEFAULT NULL,
-  `price` double(10) DEFAULT 10 NOT NULL,
+  `price` double DEFAULT 10 NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -102,7 +102,7 @@ CREATE TABLE `events` (
 
 LOCK TABLES `events` WRITE;
 /*!40000 ALTER TABLE `events` DISABLE KEYS */;
-INSERT INTO `events` VALUES (1,'Event 1',NULL,NULL),(2,'Event 2',NULL,NULL),(3,'Event 3',NULL,NULL);
+INSERT INTO `events` VALUES (1,'Event 1',NULL,NULL,10),(2,'Event 2',NULL,NULL,10),(3,'Event 3',NULL,NULL,10);
 /*!40000 ALTER TABLE `events` ENABLE KEYS */;
 UNLOCK TABLES;
 
