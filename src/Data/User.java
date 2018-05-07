@@ -53,7 +53,6 @@ public class User {
     }
 
     public UserType getUserType() {
-        System.out.println(this.getTypeId());
         UserTypeDAO userTypeDao = new UserTypeDAO();
 
         return userTypeDao.getUserType(this.getTypeId());
