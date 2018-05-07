@@ -36,7 +36,7 @@ public class UsersController extends Controller {
         assert tbl_users != null : "fx:id=\"tbl_users\" was not injected";
 
         col_uId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        col_usId.setCellValueFactory(new PropertyValueFactory<>("user_id"));
+        col_usId.setCellValueFactory(new PropertyValueFactory<>("school_id"));
         col_fName.setCellValueFactory(new PropertyValueFactory<>("fname"));
         col_lName.setCellValueFactory(new PropertyValueFactory<>("lname"));
         col_email.setCellValueFactory(new PropertyValueFactory<>("email"));

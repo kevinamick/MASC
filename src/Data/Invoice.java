@@ -17,7 +17,7 @@ public class Invoice {
     public Event getEvent() {
         EventDAO eventDao = new EventDAO();
 
-        return eventDao.getEvent(this.getEventId());
+        return eventDao.getEventByID(this.getEventId());
     }
 
     public ObservableList<InvoiceRow> getInvoiceRows() {

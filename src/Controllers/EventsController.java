@@ -11,10 +11,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
+import java.math.BigDecimal;
+
 public class EventsController extends Controller {
     @FXML private TableView<Event> tbl_events;
     @FXML private  TableColumn<Event,Integer> col_eId;
     @FXML private TableColumn<Event,String> col_eName;
+    @FXML private  TableColumn<Event,BigDecimal> col_ePrice;
     private ObservableList<Event> data;
     private EventDAO dao;
 
@@ -23,6 +26,9 @@ public class EventsController extends Controller {
         assert tbl_events != null : "fx:id=\"tbl_events\" was not injected";
         col_eName.setCellValueFactory(
                 new PropertyValueFactory<>("eventName")
+        );
+        col_ePrice.setCellValueFactory(
+                new PropertyValueFactory<>("eventPrice")
         );
 
         dao = new EventDAO();

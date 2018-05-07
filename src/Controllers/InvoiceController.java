@@ -57,14 +57,9 @@ public class InvoiceController extends Controller {
     }
 
     public BigDecimal getTotal(ObservableList<InvoiceRow> rows) {
-        BigDecimal total = new BigDecimal(0.00);
+        BigDecimal total;
+        total = rows.stream().map(InvoiceRow::getTotal).reduce(BigDecimal.ZERO,BigDecimal::add);
 
-        for (InvoiceRow row : rows) {
-            System.out.println(row.getTotal());
-            total = total.add(row.getTotal());
-        }
-
-        System.out.println(total);
         return total;
     }
 

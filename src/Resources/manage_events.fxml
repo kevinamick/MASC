@@ -21,6 +21,11 @@
                         <PropertyValueFactory property="eventName" />
                     </cellValueFactory>
                 </TableColumn>
+                <TableColumn fx:id="col_ePrice" prefWidth="176.0" text="Event Role Default Price">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="eventPrice" />
+                    </cellValueFactory>
+                </TableColumn>
             </columns>
         </TableView>
         <Label layoutX="350.0" layoutY="50.0" text="Manage Events" />
